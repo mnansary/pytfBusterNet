@@ -7,7 +7,7 @@ from termcolor import colored
 
 from tensorflow.keras.layers import Conv2D, MaxPooling2D,Input,Lambda,BatchNormalization, Activation, Concatenate
 from tensorflow.keras.models import Model
-
+from tensorflow.keras.utils import get_custom_objects
 import tensorflow.keras.backend as K 
 import tensorflow as tf 
 #--------------------------------------------------------------------------------------
@@ -35,6 +35,8 @@ def std_norm_Channel(X) :
     std = K.maximum(1e-4, K.std(X, axis=-1, keepdims=True))
     norm=(X - mean) / std
     return norm
+
+get_custom_objects().update({'std_norm_channel': Activation(std_norm_Channel)})
 
 def corrPercPool_fcn(X):
     nb_pool=100
