@@ -92,7 +92,7 @@ def sim_net(img_dim=256,nb_channels=3):
             X= MaxPooling2D((2, 2), strides=(2, 2))(X)
         X_prev=X
     
-    X = Lambda(std_norm_fcn,output_shape=stdn_out,name='std norm channel activation')(X)
+    X = Lambda(std_norm_fcn,output_shape=stdn_out)(X)
     X = Lambda(corrPercPool_fcn,output_shape=cpp_out)(X)
     X = BatchNormalization()(X)
     Xb  = inception_bn(X, 8)
