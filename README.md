@@ -44,9 +44,7 @@
 
 The dataset is preprocessed such that there are 3 types of ground truths to train **the three stage strategy** BusterNet.As an example:  
 ![](/info/img.png?raw=true)
-#### The overall ground truth for BusterNet:
-![](/info/gt.png?raw=true)
-#### Ground truth for MAN-NET:
 ![](/info/man.png?raw=true)
-#### Ground truth for SIM-NET:
 ![](/info/sim.png?raw=true)
+![](/info/gt.png?raw=true)
+
