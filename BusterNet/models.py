@@ -7,7 +7,7 @@ from termcolor import colored
 
 from tensorflow.keras.layers import Conv2D, MaxPooling2D,Input,Lambda,BatchNormalization, Activation, Concatenate
 from tensorflow.keras.models import Model
-from tensorflow.keras.utils import get_custom_objects
+
 import tensorflow.keras.backend as K 
 import tensorflow as tf 
 #--------------------------------------------------------------------------------------
@@ -30,13 +30,13 @@ def lambda_fcn(X):
 def lambda_out(in_shape):
     return tuple([in_shape[0],in_shape[1]*2,in_shape[2]*2,in_shape[3]])
 #-------------------------------------------------------------------------------------------
-def std_norm_Channel(X) :
+def std_norm_fcn(X) :
     mean = K.mean(X, axis=-1, keepdims=True)
     std = K.maximum(1e-4, K.std(X, axis=-1, keepdims=True))
     norm=(X - mean) / std
     return norm
-
-get_custom_objects().update({'std_norm_channel': Activation(std_norm_Channel)})
+def stdn_out(in_shape):
+    return in_shape
 
 def corrPercPool_fcn(X):
     nb_pool=100
@@ -92,7 +92,7 @@ def sim_net(img_dim=256,nb_channels=3):
             X= MaxPooling2D((2, 2), strides=(2, 2))(X)
         X_prev=X
     
-    X = Activation(std_norm_Channel)(X)
+    X = Lambda(std_norm_fcn,output_shape=stdn_out,name='std norm channel activation')(X)
     X = Lambda(corrPercPool_fcn,output_shape=cpp_out)(X)
     X = BatchNormalization()(X)
     Xb  = inception_bn(X, 8)
