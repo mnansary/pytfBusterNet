@@ -106,4 +106,4 @@ venv.bak/
 # Code
 .vscode/
 #NET
-BusterNet/*
+BusterNet/core.py
