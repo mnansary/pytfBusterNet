@@ -4,20 +4,12 @@
 """
 from __future__ import print_function
 from termcolor import colored
-'''
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Activation, Convolution2D, Dropout, GlobalAveragePooling2D
-from tensorflow.keras.layers import Concatenate, Dense, Input, AveragePooling2D
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.regularizers import l2
-from keras.utils import plot_model
-'''
-from keras.layers import Conv2D, MaxPooling2D,Input,Lambda,BatchNormalization, Activation, Concatenate
-from keras.models import Model
 
-import keras.backend as K 
+from tensorflow.keras.layers import Conv2D, MaxPooling2D,Input,Lambda,BatchNormalization, Activation, Concatenate
+from tensorflow.keras.models import Model
+
+import tensorflow.keras.backend as K 
 import tensorflow as tf 
-from keras.utils import plot_model
 #--------------------------------------------------------------------------------------
 def inception_bn(X, nb_filters=16, kernel_sizes=[(1,1), (3,3), (5,5)]) :
     CXs = []
