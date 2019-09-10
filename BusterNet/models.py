@@ -10,6 +10,8 @@ from tensorflow.keras.models import Model
 
 import tensorflow.keras.backend as K 
 import tensorflow as tf 
+
+from keras.utils import plot_model
 #--------------------------------------------------------------------------------------
 def inception_bn(X, nb_filters=16, kernel_sizes=[(1,1), (3,3), (5,5)]) :
     CXs = []
@@ -108,7 +110,30 @@ def sim_net(img_dim=256,nb_channels=3):
     X = Conv2D(1, (3,3), activation='sigmoid', padding='same')(X)
     model = Model(inputs=IN, outputs=X)
     return model
+#-------------------------------------------------------------------------------------------------------
+def resize_fcn(X):
+    _,nb_rows,nb_cols,_=K.int_shape(X)
+    return tf.image.resize_images(X,tf.constant([nb_rows,nb_cols],dtype = tf.int32),align_corners=True)
+def resize_out(in_shape):
+    return tuple([in_shape[0],in_shape[1],in_shape[2],in_shape[3]])
+    
+#-------------------------------------------------------------------------------------------------------
+def fusion_net(img_dim=256,nb_channels=1):
+    img_shape=(img_dim,img_dim,nb_channels)
+    X1=Input(shape=img_shape)
+    X2=Input(shape=img_shape)
+    X=Concatenate()([X1,X2])
+    X=inception_bn(X,nb_filters=3)
+    X = Conv2D( 3, (3,3),padding='same',activation='softmax')(X)
+    X=Lambda(resize_fcn,output_shape=resize_out)(X)
+    model = Model( inputs=[X1,X2],outputs=X)
+    return model
 
 if __name__=='__main__':
+    model=man_net()
+    plot_model(model,to_file='man_net.png',show_layer_names=False)
     model=sim_net()
-    model.summary()
+    plot_model(model,to_file='sim_net.png',show_layer_names=False)
+    model=fusion_net()
+    plot_model(model,to_file='fusion_net.png',show_layer_names=False)
+    

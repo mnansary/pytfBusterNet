@@ -6,7 +6,7 @@ from __future__ import print_function
 from termcolor import colored
 
 
-from models import man_net
+from models import man_net,sim_net
 import numpy as np 
 import matplotlib.pyplot as plt
 import os
@@ -46,7 +46,7 @@ def plot_data(img,gt,pred) :
     plt.clf()
     plt.close()
 ## ----- End
-
+#----------------------------------------------------------------------------------------
 def gen_man_predictions(dset_dir):
     
     # load model
@@ -75,7 +75,39 @@ def visualize_man_predictions(dset_dir,num_viz=10):
         pd=np.squeeze(pred)
 
         plot_data(img,gt,pd)    
+
+#----------------------------------------------------------------------------------------------------------------        
+#----------------------------------------------------------------------------------------
+def gen_sim_predictions(dset_dir):
+    
+    # load model
+    model=sim_net()
+    model.load_weights(os.path.join(os.getcwd(),'model_weights','sim_net.h5'))
+
+    # load data
+    imgs=readh5(os.path.join(dset_dir,'X.h5'))
+    # generate predictions
+    preds =[model.predict(np.expand_dims(tensor,axis=0)) for tensor in imgs]
+    # save predictions
+    saveh5(os.path.join(dset_dir,'Xs.h5'),np.vstack(preds))
+
+def visualize_sim_predictions(dset_dir,num_viz=10):
+    imgs=readh5(os.path.join(dset_dir,'X.h5'))
+    gts=readh5(os.path.join(dset_dir,'Ys.h5'))
+    preds=readh5(os.path.join(dset_dir,'Xs.h5'))
+    
+    for i in range(num_viz):
+        img=imgs[i]
         
+        gt=gts[i]
+        gt=np.squeeze(gt)
+        
+        pred=preds[i]
+        pd=np.squeeze(pred)
+
+        plot_data(img,gt,pd)    
+
+#----------------------------------------------------------------------------------------------------------------        
 
     
 if __name__=='__main__':
@@ -85,4 +117,6 @@ if __name__=='__main__':
     args = parser.parse_args()
     dset_dir=args.dset_dir
     #gen_man_predictions(dset_dir)
-    visualize_man_predictions(dset_dir)
+    #visualize_man_predictions(dset_dir)
+    #gen_sim_predictions(dset_dir)
+    visualize_sim_predictions(dset_dir)
