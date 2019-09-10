@@ -107,3 +107,4 @@ venv.bak/
 .vscode/
 #NET
 BusterNet/core.py
+BusterNet/model_weights/*.h5

@@ -41,10 +41,23 @@
             -h, --help  show this help message and exit         
 
 * The total number of tampered images in the dataset is 700. BUT for processing convenience images with identifiers 'P1000231' and 'DSCN47' are avoided for generalization of template matching procedure.
-
-The dataset is preprocessed such that there are 3 types of ground truths to train **the three stage strategy** BusterNet.As an example:  
-![](/info/img.png?raw=true)
+The dataset is preprocessed such that there are 3 types of ground truths.For example:
+![](/info/img.jpg?raw=true)
+This to train by **the three stage strategy** BusterNet.Sample Ground Truths for **manipulation**, **similiarity** and **fusion** branch respectively:  
 ![](/info/man.png?raw=true)
 ![](/info/sim.png?raw=true)
 ![](/info/gt.png?raw=true)
 
+# BusterNet
+The model implementation is based on [BusterNet: Detecting Copy-Move Image Forgery with Source/Target Localization](https://link.springer.com/chapter/10.1007/978-3-030-01231-1_11)
+> Authors and Researchers: Yue Wu,Wael Abd-Almageed,Prem Natarajan 
+![](/info/net.png?raw=true)
+
+# Colab and TPU(Tensor Processing Unit)
+*TPU’s have been recently added to the Google Colab portfolio making it even more attractive for quick-and-dirty machine learning projects when your own local processing units are just not fast enough. While the **Tesla K80** available in Google Colab delivers respectable **1.87 TFlops** and has **12GB RAM**, the **TPUv2** available from within Google Colab comes with a whopping **180 TFlops**, give or take. It also comes with **64 GB** High Bandwidth Memory **(HBM)**.*
+[Visit This For More Info](https://medium.com/@jannik.zuern/using-a-tpu-in-google-colab-54257328d7da)  
+**For this model the approx time/epoch=11s**
+
+## Manipulation Region Detection
+A sample result from the **manipulation** detection branch:
+![](/info/manp.png?raw=true)
