@@ -75,3 +75,5 @@ A sample result from the **similiarity** detection branch:
 Note: **Green** indicates source region and **Red** indicates forged Regions 
 ![](/info/fp.png?raw=true)
 
+### Publications:
+A research paper relating to the work is currently being communicated by the researchers. Once published, the publication link will be added here
