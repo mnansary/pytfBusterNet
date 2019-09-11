@@ -58,11 +58,20 @@ The model implementation is based on [BusterNet: Detecting Copy-Move Image Forge
 [Visit This For More Info](https://medium.com/@jannik.zuern/using-a-tpu-in-google-colab-54257328d7da)  
 **For this model the approx time/epoch=11s**
 
-#### Manipulation Region Detection
+#### Manipulation Region Detection (man-net)
 ![](/info/man_net.png?raw=true)
+
 A sample result from the **manipulation** detection branch:
 ![](/info/manp.png?raw=true)
-#### Similiar Region Detection
+#### Similiar Region Detection (sim-net)
 ![](/info/sim_net.png?raw=true)
+
 A sample result from the **similiarity** detection branch:
 ![](/info/simp.png?raw=true)
+
+#### Localization of source and forgery (fusion-net)
+![](/info/fusion_net.png?raw=true)
+
+Note: **Green** indicates source region and **Red** indicates forged Regions 
+![](/info/fp.png?raw=true)
+
