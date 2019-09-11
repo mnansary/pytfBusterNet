@@ -2,12 +2,12 @@
 
     Version: 0.0.2  
     Python : 3.6.8
-    Author : Shakir Hossain
-             Md. Nazmuddoha Ansary
-             Mohammad Bin Monjil
-             Habibur Rahman
-             Shahriar Prince
-             Md Aminul Islam
+    Researchers : Shakir Hossain  
+                  Md. Nazmuddoha Ansary **
+                  Mohammad Bin Monjil  
+                  Habibur Rahman  
+                  Shahriar Prince  
+                  Md Aminul Islam  
     
 ![](/info/src_img/python.ico?raw=true )
 ![](/info/src_img/tensorflow.ico?raw=true)
