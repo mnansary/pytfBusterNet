@@ -2,8 +2,8 @@
 
     Version: 0.0.2  
     Python : 3.6.8
-    Researchers : Shakir Hossain  
-                  Md. Nazmuddoha Ansary **
+    Researchers : Md. Nazmuddoha Ansary **
+                  Shakir Hossain
                   Mohammad Bin Monjil  
                   Habibur Rahman  
                   Shahriar Prince  
